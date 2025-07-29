@@ -81,7 +81,7 @@ A Postman collection is included in this submission.
 
 2.  **Clone the repository:**
     ```bash
-    git clone [Your GitHub Repo URL]
+    git clone https://github.com/hasaniisaher21/Gemini-Backend-Clone.git
     cd gemini-backend-clone
     ```
 
