@@ -2,7 +2,7 @@
 
 This repository contains the backend implementation for a Gemini-style chat application, built as a technical assignment for Kuvaka Tech.
 
-**Deployment URL:** `[Your Deployed App URL will go here]`
+**Deployment URL:** `https://gemini-backend-clone-dhet.onrender.com`
 
 ---
 
@@ -26,8 +26,6 @@ This repository contains the backend implementation for a Gemini-style chat appl
 - **Caching:** Implemented Redis/Node-cache for the `GET /chatroom` endpoint to improve performance and reduce database load.
 - **Scalable Backend:** Separate API server and background worker for handling long-running tasks efficiently.
 
-*(Add any other features you've completed, like the Stripe integration if you've done it)*
-
 ---
 
 ## Architecture Overview
@@ -40,8 +38,6 @@ The system is designed with a separation of concerns:
     * **Message Broker for BullMQ:** Manages the queue of jobs to be processed by the worker.
     * **Cache:** Stores frequently accessed data, like a user's list of chatrooms, to reduce database queries.
 4.  **Worker Process:** A separate Node.js process that listens for jobs on the BullMQ queue. It is solely responsible for communicating with the external Google Gemini API. This asynchronous design ensures the API server remains fast and responsive, even if the Gemini API is slow.
-
-![Architecture Diagram](https://i.imgur.com/8aGZ5eB.png)
 
 ---
 
@@ -67,9 +63,7 @@ A Postman collection is included in this submission.
 | `POST` | `/api/chatroom`           | Yes           | Creates a new chatroom for the user.            |
 | `GET`  | `/api/chatroom`           | Yes           | Lists all chatrooms for the user (cached).      |
 | `GET`  | `/api/chatroom/:id`       | Yes           | Retrieves a specific chatroom with messages.    |
-| `POST` | `/api/chatroom/:id/message` | Yes           | Sends a message (processed asynchronously). |
-| ...    | *(Add other endpoints you built)* | ...           | ...                                             |
-
+| `POST` | `/api/chatroom/:id/message` | Yes           | Sends a message (processed asynchronously).   |
 ---
 
 ## Setup and Installation
@@ -93,16 +87,14 @@ A Postman collection is included in this submission.
 4.  **Set up environment variables:**
     Create a `.env` file in the root directory and add the following:
     ```
-    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
-    JWT_SECRET="your_jwt_secret"
+    DATABASE_URL=postgresql://sahrish:sahrish123@localhost:5432/gemini_backend
+    JWT_SECRET=your_super_secret_key 
     REDIS_URL="redis://localhost:6379"
-    GEMINI_API_KEY="your_gemini_api_key"
+    GEMINI_API_KEY="AIzaSyCt-rMa1sBoVsSvhEPJRoU0e84buLV5_Bw"
+
     ```
 
-5.  **Run the database migrations/setup:**
-    *(If you have SQL files, explain how to run them here)*
-
-6.  **Start the application (requires two terminals):**
+5.  **Start the application (requires two terminals):**
     * **Terminal 1 (API Server):**
         ```bash
         npm run dev
